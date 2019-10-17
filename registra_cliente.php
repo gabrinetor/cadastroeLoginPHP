@@ -17,6 +17,7 @@
     //executar a query 
     if(mysqli_query($link, $sql)){
         echo 'Cliente registrado com sucesso!';
+        header('Location: imprimir.php');
     }else{
         echo 'Erro ao registrar Cliente.';
     }

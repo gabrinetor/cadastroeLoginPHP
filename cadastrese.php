@@ -62,11 +62,12 @@
 
 					<script type="text/javascript">
 						function doit() {
-							location.href="listar_clientes.php";
+							location.href="conexao.class.php";
 						}
 					</script>
 
 					<button onclick="doit();" class="btn btn-primary form-control">Lista de Clientes</button>
+						
 				</form>
 			</div>
 			<div class="col-md-4"></div>
