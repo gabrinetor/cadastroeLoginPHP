@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Cadastrar</title>
-		
+		<title>Cadastrar Cliente - Sistema 1</title>
+
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -15,8 +15,8 @@
 
 	<body>
 
-		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
+	<!-- Menu Fixo -->
+	<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,57 +33,93 @@
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
-	    </nav>
+	</nav>
 
+	<br />
+	<legend><h1 align="center">Cadastro de Clientes</h1></legend>
+	<br />
 
-	    <div class="container">
-	    	
-	    	<br /><br />
-
-	    	<div class="col-md-4"></div>
-	    	<div class="col-md-4">
-	    		<h3>Cadastro de Clientes</h3>
-	    		<br />
-				<form method="post" action="registra_cliente.php" id="formCadastrarse">
-					<div class="form-group">
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Usuário" required="requiored">
-					</div>
-
-					<div class="form-group">
-						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="requiored">
-					</div>
-					
-					<div class="form-group">
-						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="requiored">
-					</div>
-					
-					<button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
-					<br><br>
-
-					<script type="text/javascript">
-						function doit() {
-							location.href="conexao.class.php";
-						}
-					</script>
-
-					<button onclick="doit();" class="btn btn-primary form-control">Lista de Clientes</button>
-						
-				</form>
-			</div>
-			<div class="col-md-4"></div>
-
-			<div class="clearfix"></div>
-			<br />
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
-
-		</div>
-
-
-	    </div>
+	<!-- Coluna 1 GRID (md = escala Medium ≥768px) -->
+	<div class="col-md-2"></div>
 	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- Coluna 2 GRID -->	
+	<div class="col-md-4">
+
+		<!-- Formulário -->
+		<form method="POST" action="registra_cliente.php" id="formCadastrarse">
+				
+			<div class="form-group">
+				<label>Nome: </label>
+				<input type="text" class="form-control" id="nome_cli" name="nome_cli" placeholder="Nome Completo" required="requiored">
+			</div>
+					
+			<div class="form-group">
+				<label>Data de Nascimento: </label>
+				<input type="date" class="form-control" id="data_nasc_cli" name="data_nasc_cli" placeholder="Data Nascimento" required="requiored">
+			</div>
+
+			<div class="form-group">
+				<label>CPF: </label>
+				<input type="text" class="form-control cpf-mask" id="cpf_cli" name="cpf_cli" placeholder="000.000.000-00" required="requiored">
+			</div>
+
+			<div class="form-group">
+				<label>Telefone: </label>
+				<input type="tel" class="form-control phone-mask" id="telefone_cli" name="telefone_cli" placeholder="(00) 0000-0000" required="requiored">
+			</div>
+
+			<div class="form-group">
+				<label>Endereço: </label>
+				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo" required="requiored">
+			</div>
+
+	</div><!-- Fim da coluna 2 GRID -->
+
+	<!-- Coluna 3 GRID -->
+	<div class="col-md-1"></div>
+
+	<!-- Coluna 4 GRID -->
+	<div class="col-md-4">
+
+			<div class="form-group">
+				<label>E-mail: </label>
+				<input type="email" class="form-control" id="email_cli" name="email_cli" placeholder="Email" required="requiored">
+			</div>
+					
+			<div class="form-group">
+				<label>Senha: </label>
+				<input type="password" class="form-control" id="senha_cli" name="senha_cli" placeholder="Senha" required="requiored">
+			</div>
+
+			<div class="form-group">
+				<label>Data de Registro: </label>
+				<input type="date" class="form-control date-mask" id="data_reg_cli" name="data_reg_cli" placeholder="Data de Registro" required="requiored">
+			</div>
+		<br />
+			<div class="form-check">
+				<label class="form-check-label">Obs.: Caso não preenchimento de endereço, cliente será inativado.</label>
+    			<input type="checkbox" class="form-check-input" id="Checado">
+    			<label class="form-check-label" for="Checado">Aceito as condições.</label>
+  			</div>
+					
+			<button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
+			<br><br>
+
+		</form>
+
+	</div></div>
+			
+			
+	<!-- Coluna 5 GRID -->
+	<div class="col-md-1"></div>
+
+
+	<div class="clearfix"></div>
+		
+
+	<!-- Bootstrap CDN -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
 	</body>
+
 </html>

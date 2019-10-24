@@ -1,5 +1,6 @@
 <?php 
 
+    // conexão com phpmyadmin
     class db {
 
         //host
@@ -27,7 +28,7 @@
             if(mysqli_connect_errno()){
                 echo 'Erro ao tentar se conectar ao BD MySQL: '.mysqli_connect_error();
             }
-
+ 
             return $con;
 
         }

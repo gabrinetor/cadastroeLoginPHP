@@ -3,22 +3,18 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Cadastrar</title>
+		<title>Portal de Acesso do Cliente - Sistema 1</title>
 
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	
-		<script>
-			// código javascript						
-		</script>
 	</head>
 
 	<body>
 
-		<!-- Static navbar -->
+		<!-- Menu Fixo -->
 	    <nav class="navbar navbar-default navbar-static-top">
 	      <div class="container">
 	        <div class="navbar-header">
@@ -33,57 +29,57 @@
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	            <li><a href="cadastrese.php">Cadastre-se</a></li>
-	            <li class="">
-	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrar</a>
-					<ul class="dropdown-menu" aria-labelledby="entrar">
-						<div class="col-md-12">
-				    		<p>Você possui uma conta?</h3>
-				    		<br />
-							<form method="POST" action="validar_acesso.php" id="formLogin">
-								<div class="form-group">
-									<input type="text" class="form-control" id="campo_email" name="email" placeholder="E-mail" />
-								</div>
-								
-								<div class="form-group">
-									<input type="password" class="form-control red" id="campo_senha" name="senha" placeholder="Senha" />
-								</div>
-								
-								<button type="buttom" class="btn btn-primary" id="btn_login">Entrar</button>
-
-								<br /><br />
-								
-							</form>
-
-							<?php
-								if($erro == 1){
-									echo 'Usuario e ou senha invalidos';
-								}
-							?>
-
-						</form>
-				  	</ul>
-				</li>
-				<li><a href="listar_clientes.php">Lista de Clientes</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
 
+		<!-- Alinhar componentes na tela -->
+	    <div class="container"><br />
 
-	    <div class="container">
+			<!-- Coluna 1 - GRID -->
+			<div class="col-md-5">
+				<legend><h2> Veja os clientes cadastrados até o momento! </h2></legend>
+				<br>
 
-	      <!-- Main component for a primary marketing message or call to action -->
-	      <div class="jumbotron">
-	        <h1>Sistema de Cadastro</h1>
-	        <p>Se você é um cliente, entre em sua conta, se não é, cadastre-se...</p>
+				<!-- Botão baixar o .csv de clientes listados -->
+				<button onclick="document.location.href='imprimir.php'" class="btn btn-primary form-control">Lista de Clientes</button>
+				
+				<br /><br />
+			</div>
+
+			<!-- Coluna 2 - GRID -->
+			<div class="col-md-1"></div>
+
+			<!-- Coluna 3 - GRID -->
+			<div class="col-md-6">
+			
+				<!-- Fazer Login -->
+				<form method="POST" action="validar_acesso.php" id="formLogin">
+					<legend>LOGIN DE CLIENTE</legend><br />
+					<label>EMAIL: </label>
+					<div class="form-group">
+						<input type="text" class="form-control" id="campo_email_cli" name="email_cli" placeholder="E-mail" />
+					</div>
+
+					<label>SENHA: </label>
+					<div class="form-group">
+						<input type="password" class="form-control red" id="campo_senha_cli" name="senha_cli" placeholder="Senha" />
+					</div>
+								
+					<button type="buttom" class="btn btn-primary" id="btn_login">Entrar</button>
+					<br /><br />
+								
+				</form>
+			</div>
+			
 	      </div>
 
 	      <div class="clearfix"></div>
-		</div>
-
 
 	    </div>
 	
+		<!-- Bootstrap CDN -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
 	</body>
