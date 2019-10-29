@@ -14,24 +14,37 @@
     $email_cli = $_POST['email_cli'];
     $senha_cli = $_POST['senha_cli'];
     $data_reg_cli = $_POST['data_reg_cli'];
+    $status_cli = $_POST['status_cli'];
 
     // instancia para poder conectar ao bd do phpmyadmin
     $objDB = new db();
     $link = $objDB->conecta_mysql();    //conexão
 
-    // inserir registros diretamente para a tabela 
-    $sql = " INSERT INTO clientes(nome_cli, data_nasc_cli, cpf_cli, telefone_cli, endereco_cli, email_cli, senha_cli, data_reg_cli) VALUES ('$nome_cli', '$data_nasc_cli', '$cpf_cli', '$telefone_cli', '$endereco_cli', '$email_cli', '$senha_cli', '$data_reg_cli') ";
-
-    //executar a query
-    mysqli_query($link, $sql);
+    
+    
 
     //valida se usuario foi registrado no bd 
-    if(mysqli_query($link, $sql)){
+    /*if(mysqli_query($link, $sql)){
         echo 'Cliente registrado com sucesso!';
         header('Location: validar_acesso.php');
 
     }else{
         echo 'Erro ao registrar Cliente.';
-    }
+    }*/
+
+    
+    if(empty($endereco_cli))
+        $status_cli = 0;
+
+    else 
+        $status_cli = 1;
+
+    var_dump($status_cli);        
+
+// inserir registros diretamente para a tabela 
+$sql = " INSERT INTO clientes(nome_cli, data_nasc_cli, cpf_cli, telefone_cli, endereco_cli, email_cli, senha_cli, data_reg_cli, status_cli) VALUES ('$nome_cli', '$data_nasc_cli', '$cpf_cli', '$telefone_cli', '$endereco_cli', '$email_cli', '$senha_cli', '$data_reg_cli', '$status_cli') ";
+
+//executar a query
+mysqli_query($link, $sql);
 
 ?>

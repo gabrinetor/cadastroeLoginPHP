@@ -45,6 +45,17 @@
 	<!-- Coluna 2 GRID -->	
 	<div class="col-md-4">
 
+		<?php 
+		if(isset($_POST['meucheckbox']))
+		{
+    echo "checkbox marcado! <br/>";
+    echo "valor: " . $_POST['meucheckbox'];
+}
+else
+{
+    echo "checkbox não marcado! <br/>";
+}?>
+
 		<!-- Formulário -->
 		<form method="POST" action="registra_cliente.php" id="formCadastrarse">
 				
@@ -70,7 +81,7 @@
 
 			<div class="form-group">
 				<label>Endereço: </label>
-				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo" required="requiored">
+				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo">
 			</div>
 
 	</div><!-- Fim da coluna 2 GRID -->
