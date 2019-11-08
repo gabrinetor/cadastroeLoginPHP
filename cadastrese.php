@@ -45,22 +45,11 @@
 	<!-- Coluna 2 GRID -->	
 	<div class="col-md-4">
 
-		<?php 
-		if(isset($_POST['meucheckbox']))
-		{
-    echo "checkbox marcado! <br/>";
-    echo "valor: " . $_POST['meucheckbox'];
-}
-else
-{
-    echo "checkbox não marcado! <br/>";
-}?>
-
 		<!-- Formulário -->
 		<form method="POST" action="registra_cliente.php" id="formCadastrarse">
 				
 			<div class="form-group">
-				<label>Nome: </label>
+				<label>Nome Completo: </label>
 				<input type="text" class="form-control" id="nome_cli" name="nome_cli" placeholder="Nome Completo" required="requiored">
 			</div>
 					
@@ -70,19 +59,15 @@ else
 			</div>
 
 			<div class="form-group">
-				<label>CPF: </label>
-				<input type="text" class="form-control cpf-mask" id="cpf_cli" name="cpf_cli" placeholder="000.000.000-00" required="requiored">
-			</div>
-
-			<div class="form-group">
 				<label>Telefone: </label>
 				<input type="tel" class="form-control phone-mask" id="telefone_cli" name="telefone_cli" placeholder="(00) 0000-0000" required="requiored">
 			</div>
 
 			<div class="form-group">
-				<label>Endereço: </label>
-				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo">
+				<label>Celular: </label>
+				<input type="tel" class="form-control phone-mask" id="celular_cli" name="celular_cli" placeholder="(00) 0000-0000" required="requiored">
 			</div>
+
 
 	</div><!-- Fim da coluna 2 GRID -->
 
@@ -96,24 +81,20 @@ else
 				<label>E-mail: </label>
 				<input type="email" class="form-control" id="email_cli" name="email_cli" placeholder="Email" required="requiored">
 			</div>
-					
+
 			<div class="form-group">
-				<label>Senha: </label>
-				<input type="password" class="form-control" id="senha_cli" name="senha_cli" placeholder="Senha" required="requiored">
+				<label>CPF: </label>
+				<input type="text" class="form-control cpf-mask" id="cpf_cli" name="cpf_cli" placeholder="000.000.000-00" required="requiored">
 			</div>
 
 			<div class="form-group">
-				<label>Data de Registro: </label>
-				<input type="date" class="form-control date-mask" id="data_reg_cli" name="data_reg_cli" placeholder="Data de Registro" required="requiored">
+				<label>Endereço: </label>
+				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo">
 			</div>
-		<br />
-			<div class="form-check">
-				<label class="form-check-label">Obs.: Caso não preenchimento de endereço, cliente será inativado.</label>
-    			<input type="checkbox" class="form-check-input" id="Checado">
-    			<label class="form-check-label" for="Checado">Aceito as condições.</label>
-  			</div>
-					
-			<button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
+
+					<!--sistema reserva  vai ter bd quarto, reseva e cliente-->
+			<!-- maisa campos (nome pai, mae, -->		
+			<br><button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
 			<br><br>
 
 		</form>

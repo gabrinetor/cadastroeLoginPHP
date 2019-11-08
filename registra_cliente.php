@@ -7,22 +7,17 @@
     
     // Metodo Post que é uma Array que guarda dados de cada elemento do formulario
     $nome_cli = $_POST['nome_cli'];
-    $data_nasc_cli = $_POST['data_nasc_cli'];
     $cpf_cli = $_POST['cpf_cli'];
+    $data_nasc_cli = $_POST['data_nasc_cli'];
     $telefone_cli = $_POST['telefone_cli'];
+    $celular_cli = $_POST['celular_cli'];
     $endereco_cli = $_POST['endereco_cli'];
     $email_cli = $_POST['email_cli'];
-    $senha_cli = $_POST['senha_cli'];
-    $data_reg_cli = $_POST['data_reg_cli'];
-    $status_cli = $_POST['status_cli'];
 
     // instancia para poder conectar ao bd do phpmyadmin
     $objDB = new db();
     $link = $objDB->conecta_mysql();    //conexão
-
     
-    
-
     //valida se usuario foi registrado no bd 
     /*if(mysqli_query($link, $sql)){
         echo 'Cliente registrado com sucesso!';
@@ -32,17 +27,15 @@
         echo 'Erro ao registrar Cliente.';
     }*/
 
-    
     if(empty($endereco_cli))
         $status_cli = 0;
 
     else 
         $status_cli = 1;
 
-    var_dump($status_cli);        
 
 // inserir registros diretamente para a tabela 
-$sql = " INSERT INTO clientes(nome_cli, data_nasc_cli, cpf_cli, telefone_cli, endereco_cli, email_cli, senha_cli, data_reg_cli, status_cli) VALUES ('$nome_cli', '$data_nasc_cli', '$cpf_cli', '$telefone_cli', '$endereco_cli', '$email_cli', '$senha_cli', '$data_reg_cli', '$status_cli') ";
+$sql = " INSERT INTO clientes(nome_cli, cpf_cli, data_nasc_cli, telefone_cli, celular_cli, endereco_cli, email_cli) VALUES ('$nome_cli', '$cpf_cli', '$data_nasc_cli', '$telefone_cli', '$celular_cli', '$endereco_cli', '$email_cli') ";
 
 //executar a query
 mysqli_query($link, $sql);

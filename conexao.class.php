@@ -42,7 +42,7 @@
         // Forçar validação para criar objeto para forçar conexão senao retorna erro
         public function conectar() {
             try {
-                $this->pdo = new PDO("mysql:host=localhost;dbname=cadastrocliente",
+                $this->pdo = new PDO("mysql:host=localhost;dbname=databaseclientes",
                                 "root",
                                 "",
                                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

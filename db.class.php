@@ -13,7 +13,7 @@
         private $senha = '';
 
         //banco de dados
-        private $database = 'cadastrocliente';
+        private $database = 'databaseclientes';
 
         public function conecta_mysql(){
 
