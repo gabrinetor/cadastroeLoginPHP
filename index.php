@@ -1,3 +1,8 @@
+<!--php
+	$pdoConnection = require_once('Conexao.class.php');
+		if($_GET['acao'] == 'del' && isset($_GET['id_cli']) && preg_match("/^[0-9]+$/", $_GET['id_cli'])){ 
+		}
+	-->
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
@@ -14,15 +19,17 @@
 		<!-- DataTables -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+		<script>
+		.icon {
+    		background: url('icon.jpg');
+    	}
+		</script>
 	</head>
 
 	<body>
 	
-	<?php
-	$pdoConnection = require_once('Conexao.class.php');
-		if($_GET['acao'] == 'del' && isset($_GET['id_cli']) && preg_match("/^[0-9]+$/", $_GET['id_cli'])){ 
-		}
-	?>
+	
 
 		<!-- Menu Fixo -->
 	    <nav class="navbar navbar-default navbar-static-top">
@@ -62,11 +69,13 @@
 			</thead>
 	<tbody>
 		<?php 
+		require_once('conexao.class.php');
+
 		//instanciar a conexão
 		$pdo = new Conexao();
 			
 		//mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, telefone_cli, endereco_cli, email_cli, data_reg_cli, status_cli FROM clientes");
+		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, telefone_cli, celular_cli, endereco_cli, email_cli, status_cli, data_de_registro FROM clientes");
 				
 		foreach($result as $value){
 			echo "<tr>";
@@ -75,8 +84,10 @@
 			echo "<td>".$value['cpf_cli']."</td>";
 			echo "<td>".$value['endereco_cli']."</td>";     
 			echo "<td>".$value['status_cli']."</td>"; ?>				
-			<td><button class="btn btn-primary" type="submit">Atualizar </button> 
-			<a href="desabilitar_cliente.php?id=<?php echo $value['id_cli']?>" class="btn btn-danger">Desablitar</a></td>
+
+<!--			<td><button class="btn btn-primary" type="submit">Atualizar </button> 
+			<a href="desabilitar_cliente.php?id=<?php echo $value['id_cli']?>" class="btn btn-danger">Desablitar</a></td>-->
+			
 			<?php
 			echo "</tr>"; 
 		}
@@ -94,7 +105,7 @@
 	<div class="col-md-3">
 	<br>
 	<!-- Botão baixar o .csv de clientes listados -->
-	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control">Exportar clientes</button>
+	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control">Exportar clientes<div style ="background-image: url('icon.jpg');">  </div> </button>
 				
 	<br /><br />
 	</div>

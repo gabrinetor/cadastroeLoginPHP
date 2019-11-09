@@ -54,19 +54,20 @@
 			</div>
 					
 			<div class="form-group">
+				<label>CPF: </label>
+				<input type="text" class="form-control cpf-mask" id="cpf_cli" name="cpf_cli" placeholder="000.000.000-00" required="requiored">
+			</div>
+			
+			<div class="form-group">
 				<label>Data de Nascimento: </label>
 				<input type="date" class="form-control" id="data_nasc_cli" name="data_nasc_cli" placeholder="Data Nascimento" required="requiored">
 			</div>
 
 			<div class="form-group">
-				<label>Telefone: </label>
-				<input type="tel" class="form-control phone-mask" id="telefone_cli" name="telefone_cli" placeholder="(00) 0000-0000" required="requiored">
+				<label>E-mail: </label>
+				<input type="email" class="form-control" id="email_cli" name="email_cli" placeholder="Email" required="requiored">
 			</div>
 
-			<div class="form-group">
-				<label>Celular: </label>
-				<input type="tel" class="form-control phone-mask" id="celular_cli" name="celular_cli" placeholder="(00) 0000-0000" required="requiored">
-			</div>
 
 
 	</div><!-- Fim da coluna 2 GRID -->
@@ -78,13 +79,13 @@
 	<div class="col-md-4">
 
 			<div class="form-group">
-				<label>E-mail: </label>
-				<input type="email" class="form-control" id="email_cli" name="email_cli" placeholder="Email" required="requiored">
+				<label>Celular: </label>
+				<input type="tel" class="form-control phone-mask" id="celular_cli" name="celular_cli" placeholder="(00) 0000-0000" required="requiored">
 			</div>
 
 			<div class="form-group">
-				<label>CPF: </label>
-				<input type="text" class="form-control cpf-mask" id="cpf_cli" name="cpf_cli" placeholder="000.000.000-00" required="requiored">
+				<label>Telefone: </label>
+				<input type="tel" class="form-control phone-mask" id="telefone_cli" name="telefone_cli" placeholder="(00) 0000-0000" required="requiored">
 			</div>
 
 			<div class="form-group">
@@ -92,7 +93,7 @@
 				<input type="text" class="form-control address" id="endereco_cli" name="endereco_cli" placeholder="Endereço Completo">
 			</div>
 
-					<!--sistema reserva  vai ter bd quarto, reseva e cliente-->
+			<!--sistema reserva  vai ter bd quarto, reseva e cliente-->
 			<!-- maisa campos (nome pai, mae, -->		
 			<br><button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
 			<br><br>
