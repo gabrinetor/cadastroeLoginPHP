@@ -11,6 +11,71 @@
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mask.min.js"></script>	
+
+		<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#cpf_cli").mask("000.000.000-00")
+			$("#telefone_cli").mask("(00) 0000-0000")
+			$("#data_nasc_cli").mask("00/00/0000")
+			
+			
+			$("#celular_cli").mask("(00) 0000-00009")
+			
+			$("#celular_cli").blur(function(event){
+				if ($(this).val().length == 15){
+					$("#celular_cli").mask("(00) 00000-0009")
+				}else{
+					$("#celular_cli").mask("(00) 0000-00009")
+				}
+			})
+		})
+
+			function validar_form_cadastro(){
+				var nome_cli = formCadastrarse.nome_cli.value;
+				var cpf_cli = formCadastrarse.cpf_cli.value;
+				var data_nasc_cli = formCadastrarse.data_nasc_cli.value;
+				var telefone_cli = formCadastrarse.telefone_cli.value;
+				var celular_cli = formCadastrarse.celular_cli.value;
+				var endereco_cli = formCadastrarse.endereco_cli.value;
+				var email_cli = formCadastrarse.email_cli.value;
+				
+				if(nome_cli == ""){
+					alert("Campo nome é obrigatorio");
+					formCadastrarse.nome_cli.focus();
+					return false;
+				}if(cpf_cli == ""){
+					alert("Campo cpf é obrigatório");
+					formCadastrarse.cpf_cli.focus();
+					return false;
+				}if(data_nasc_cli == ""){
+					alert("Campo data de nascimento é obrigatório");
+					formCadastrarse.data_nasc_cli.focus();
+					return false;
+				}if(telefone_cli == ""){
+					alert("Campo telefone é obrigatório");
+					formCadastrarse.telefone_cli.focus();
+					return false;
+				}if(celular_cli == ""){
+					alert("Campo celular é obrigatório");
+					formCadastrarse.celular_cli.focus();
+					return false;
+				}if(endereco_cli == ""){
+					alert("Campo endereco é obrigatorio");
+					formCadastrarse.endereco_cli.focus();
+					return false;
+				}if(email_cli == ""){
+					alert("Campo e-mail é obrigatorio");
+					formCadastrarse.email_cli.focus();
+					return false;
+				}
+			}
+		</script>
+
 	</head>
 
 	<body>
@@ -95,7 +160,8 @@
 
 			<!--sistema reserva  vai ter bd quarto, reseva e cliente-->
 			<!-- maisa campos (nome pai, mae, -->		
-			<br><button type="submit" class="btn btn-primary form-control">Cadastre-se</button>
+			<br><button type="submit" class="btn btn-primary form-control" onclick="return validar_form_contato()">Cadastre-se</button><br>
+			<input type="submit" value="Enviar" onclick="return validar_form_contato()">
 			<br><br>
 
 		</form>

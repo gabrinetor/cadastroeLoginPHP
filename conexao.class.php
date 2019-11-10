@@ -10,7 +10,7 @@
         public function __set($name, $value){
             $this->data[$name] = $value;    //o valor é igual à lista array de nomes
         }
- 
+    
         // Retornar o valor do índice da Array
         public function __get($name){
             if (array_key_exists($name, $this->data)) {

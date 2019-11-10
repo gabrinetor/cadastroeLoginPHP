@@ -4,9 +4,9 @@
 
     //variavel para monstar a tabela
     $dadosCsv  = "";
-    $dadosCsv .= "  <table border='1' >";
-    $dadosCsv .= "          <tr>";
-    $dadosCsv .= "          <th>Nome</th>";
+    $dadosCsv1 .= "  <table border='1' >";
+    $dadosCsv2 .= "          <tr>";
+    $dadosCsv3 .= "          <th>Nome</th>";
     $dadosCsv .= "          <th>Data Nascimento</th>";
     $dadosCsv .= "          <th>CPF</th>";
     $dadosCsv .= "          <th>Endereco</th>";

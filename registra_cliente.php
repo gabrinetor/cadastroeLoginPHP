@@ -18,22 +18,19 @@
     $objDB = new db();
     $link = $objDB->conecta_mysql();    //conexão
 
-    if($link){
-        if(empty($endereco_cli)){
-            $status_cli = 0;
-        }
-    
-        else{
-            $status_cli = 1;
-        }     
+    if(empty($endereco_cli)){
+        $status_cli = 0;
     }
+    
+    else{
+        $status_cli = 1;
+    }     
 
     // inserir registros diretamente para a tabela 
-    $sql = " INSERT INTO clientes(nome_cli, data_nasc_cli, cpf_cli, telefone_cli, celular_cli, endereco_cli, email_cli, status_cli) VALUES ('$nome_cli', '$data_nasc_cli', '$cpf_cli', '$telefone_cli', '$celular_cli', '$endereco_cli', '$email_cli', '$status_cli') ";
+    $sql = " INSERT INTO clientes(nome_cli, data_nasc_cli, cpf_cli, telefone_cli, celular_cli, endereco_cli, email_cli, status_cli) VALUES ('$nome_cli', '$data_nasc_cli', '$cpf_cli', '$telefone_cli', '$celular_cli', '$endereco_cli', '$email_cli', '$status_cli') LIMIT 1; ";
 
     //executar a query
     mysqli_query($link, $sql);
-
         
     //valida se usuario foi registrado no bd 
     if(mysqli_query($link, $sql)){

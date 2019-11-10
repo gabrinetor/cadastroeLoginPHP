@@ -16,7 +16,7 @@
         private $database = 'databaseclientes';
 
         public function conecta_mysql(){
-
+    
             //criar a conexão 
             //mysqli_connect(localização bd, usuario de acesso, senha, banco de dados);
             $con = mysqli_connect($this->host, $this->usuario, $this->senha, $this->database);

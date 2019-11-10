@@ -22,8 +22,35 @@
 
 		<script>
 		.icon {
-    		background: url('icon.jpg');
+    		background: url('img/icon.jpg');
     	}
+		</script>
+
+<script type="text/javascript">
+			function validar_form_contato(){
+				var nome = formcontato.nome.value;
+				var email = formcontato.email.value;
+				var assunto = formcontato.assunto.value;
+				var mensagem = formcontato.mensagem.value;
+				
+				if(nome == ""){
+					alert("Campo nome é obrigatorio");
+					formcontato.nome.focus();
+					return false;
+				}if(email == ""){
+					alert("Campo email é obrigatorio");
+					formcontato.email.focus();
+					return false;
+				}if(assunto == ""){
+					alert("Campo assunto é obrigatorio");
+					formcontato.assunto.focus();
+					return false;
+				}if(mensagem == ""){
+					alert("Campo mensagem é obrigatorio");
+					formcontato.mensagem.focus();
+					return false;
+				}
+			}
 		</script>
 	</head>
 
@@ -75,7 +102,7 @@
 		$pdo = new Conexao();
 			
 		//mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, telefone_cli, celular_cli, endereco_cli, email_cli, status_cli, data_de_registro FROM clientes");
+		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, endereco_cli, status_cli FROM clientes");
 				
 		foreach($result as $value){
 			echo "<tr>";
@@ -86,7 +113,7 @@
 			echo "<td>".$value['status_cli']."</td>"; ?>				
 
 <!--			<td><button class="btn btn-primary" type="submit">Atualizar </button> 
-			<a href="desabilitar_cliente.php?id=<?php echo $value['id_cli']?>" class="btn btn-danger">Desablitar</a></td>-->
+			<a href="desabilitar_cliente.php?id= < ? php echo $value['id_cli']?>" class="btn btn-danger">Desablitar</a></td>-->
 			
 			<?php
 			echo "</tr>"; 
@@ -105,7 +132,7 @@
 	<div class="col-md-3">
 	<br>
 	<!-- Botão baixar o .csv de clientes listados -->
-	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control">Exportar clientes<div style ="background-image: url('icon.jpg');">  </div> </button>
+	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control">Exportar clientes<div class="icon"></div> </button>
 				
 	<br /><br />
 	</div>
