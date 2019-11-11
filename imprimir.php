@@ -2,16 +2,6 @@
 
     // Criar a view do arquivo a ser baixado
 
-    //variavel para monstar a tabela
-    $dadosCsv  = "";
-    $dadosCsv1 .= "  <table border='1' >";
-    $dadosCsv2 .= "          <tr>";
-    $dadosCsv3 .= "          <th>Nome</th>";
-    $dadosCsv .= "          <th>Data Nascimento</th>";
-    $dadosCsv .= "          <th>CPF</th>";
-    $dadosCsv .= "          <th>Endereco</th>";
-    $dadosCsv .= "          <th>Status</th>";
-    $dadosCsv .= "      </tr>";
     
     //incluir nossa conexão
     include_once('Conexao.class.php');
@@ -20,32 +10,41 @@
     $pdo = new Conexao();
 
     //mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $result = $pdo->select("SELECT nome_cli, data_nasc_cli, cpf_cli, endereco_cli, status_cli FROM clientes");
-    
-    //varrer o array com o foreach para pegar os dados
-    foreach($result as $res){
-        $dadosCsv .= "      <tr>";
-        $dadosCsv .= "          <td>".$res['nome_cli']."</td>";
-        $dadosCsv .= "          <td>".$res['data_nasc_cli']."</td>";
-        $dadosCsv .= "          <td>".$res['cpf_cli']."</td>";
-        $dadosCsv .= "          <td>".$res['endereco_cli']."</td>";     
-        $dadosCsv .= "          <td>".$res['status_cli']."</td>";
-        $dadosCsv .= "      </tr>";
-    }
-    $dadosCsv .= "  </table>";
- 
-    // Nome do arquivo que será exportado  
-    $arquivo = 'Clientes'.date('YmdHis').'.csv';  
+    $result = $pdo->select("SELECT nome_cli, cpf_cli, endereco_cli, status_cli 
+        FROM clientes");
 
-    // Configurações header para forçar o download  
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="'.$arquivo.'"');
-    header('Cache-Control: max-age=0');
+ function array_para_csv(array &$array)
+{
+   if (count($array) == 0) {
+     return null;
+   }
+   ob_start();
+   $df = fopen("php://output", 'w');
+   fputcsv($df, array_keys(reset($array)));
+   foreach ($array as $row) {
+      fputcsv($df, $row);
+   }
+   fclose($df);
+   return ob_get_clean();
+}
 
-    // Se for o IE9, isso talvez seja necessário
-    header('Cache-Control: max-age=1');
-       
-    // Enviar o conteúdo do arquivo  
-    echo $dadosCsv;  
-    exit;
-?>
+function cabecalho_download_csv($filename) {
+    // desabilitar cache
+    $now = gmdate("D, d M Y H:i:s");
+    header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+    header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+    header("Last-Modified: {$now} GMT");
+
+    // forçar download  
+    header("Content-Type: application/force-download");
+    header("Content-Type: application/octet-stream");
+    header("Content-Type: application/download");
+
+    // disposição do texto / codificação
+    header("Content-Disposition: attachment;filename={$filename}");
+    header("Content-Transfer-Encoding: binary");
+}
+
+cabecalho_download_csv("clientes_" . date("d-m-Y His") . ".csv");
+echo array_para_csv($result);
+exit;

@@ -1,14 +1,10 @@
-<!--php
-	$pdoConnection = require_once('Conexao.class.php');
-		if($_GET['acao'] == 'del' && isset($_GET['id_cli']) && preg_match("/^[0-9]+$/", $_GET['id_cli'])){ 
-		}
-	-->
+
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Portal de Acesso do Cliente - Sistema 1</title>
+		<title>Cadastro Cliente - Sistema 1</title>
 
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -25,37 +21,33 @@
     		background: url('img/icon.jpg');
     	}
 		</script>
-
-<script type="text/javascript">
-			function validar_form_contato(){
-				var nome = formcontato.nome.value;
-				var email = formcontato.email.value;
-				var assunto = formcontato.assunto.value;
-				var mensagem = formcontato.mensagem.value;
-				
-				if(nome == ""){
-					alert("Campo nome é obrigatorio");
-					formcontato.nome.focus();
-					return false;
-				}if(email == ""){
-					alert("Campo email é obrigatorio");
-					formcontato.email.focus();
-					return false;
-				}if(assunto == ""){
-					alert("Campo assunto é obrigatorio");
-					formcontato.assunto.focus();
-					return false;
-				}if(mensagem == ""){
-					alert("Campo mensagem é obrigatorio");
-					formcontato.mensagem.focus();
-					return false;
-				}
-			}
-		</script>
 	</head>
 
 	<body>
 	
+	<style type="text/css">
+		
+		button {
+  border: 1px solid #0066cc;
+  background-color: #0099cc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+button:hover {
+  border: 1px solid #0099cc;
+  background-color: #00aacc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+	</style>
 	
 
 		<!-- Menu Fixo -->
@@ -72,7 +64,7 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="cadastrese.php">Cadastre-se</a></li>
+	            <li><a href="cadastrese.php">Novo Cliente</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
@@ -103,26 +95,36 @@
 			
 		//mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, endereco_cli, status_cli FROM clientes");
-				
+
+		if(empty($result) || count($result) == 0) {
+			echo "<tr>";
+			echo "<td> Nenhum registro encontrado </td>";
+			echo "</tr>";
+			$btn_imprimir = 'disabled'; 
+		} else {
+		$btn_imprimir = true; 
 		foreach($result as $value){
+			$status = ($value['status_cli'] == 1) ? 'Ativado' : 'Inativo'; 
+			$data = $value['data_nasc_cli'];
+			$label_desativa_ativa = ($value['status_cli'] == 1) ? 'Desativar' : 'Ativar'; 
+			$label_btn = ($value['status_cli'] == 1) ? 'btn-danger' : 'btn-success';
+
 			echo "<tr>";
 			echo "<td>".$value['nome_cli']."</td>";
-			echo "<td>".$value['data_nasc_cli']."</td>";
+			echo "<td>".date('d/m/Y',strtotime($data)) ."</td>";
 			echo "<td>".$value['cpf_cli']."</td>";
 			echo "<td>".$value['endereco_cli']."</td>";     
-			echo "<td>".$value['status_cli']."</td>"; ?>				
+			echo "<td>".  $status ."</td>"; 
 
-<!--			<td><button class="btn btn-primary" type="submit">Atualizar </button> 
-			<a href="desabilitar_cliente.php?id= < ? php echo $value['id_cli']?>" class="btn btn-danger">Desablitar</a></td>-->
+			?>				
+		<td><a href="cadastrese.php?id=<?php echo $value['id_cli'];?>" class="btn btn-primary">Atualizar</a>
+			<a href="desativa_cliente.php?id=<?php echo $value['id_cli'];?>&status_cli=<?php echo $value['status_cli'];?>" class="btn <?php echo $label_btn;?>"><?php echo $label_desativa_ativa; ?> </a></td>
 			
 			<?php
 			echo "</tr>"; 
+			}
 		}
 		?>
-	
-	<tr>
-		<td></td>
-	</tr>
 					
 	</tbody>
 	</table>
@@ -132,14 +134,37 @@
 	<div class="col-md-3">
 	<br>
 	<!-- Botão baixar o .csv de clientes listados -->
-	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control">Exportar clientes<div class="icon"></div> </button>
-				
+	<button onclick="document.location.href='imprimir.php'" class="btn btn-success form-control" 
+	<?php echo $btn_imprimir; ?>
+	>Exportar clientes</button>			
 	<br /><br />
 	</div>
 
 	<script type="text/javascript">
 		$(document).ready( function () {
-    	$('#table_id').DataTable();
+    	//$('#table_id').DataTable();
+
+    	 $("#table_id").dataTable({
+                "bJQueryUI": true,
+                "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ registros",
+                    "sZeroRecords":  "Não foram encontrados resultados",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Buscar:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                }
+            }) 
+
 		} );
 	</script>
 			
