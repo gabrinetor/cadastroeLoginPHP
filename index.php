@@ -94,7 +94,7 @@ button[disabled]{
 		$pdo = new Conexao();
 			
 		//mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, endereco_cli, status_cli FROM clientes");
+		$result = $pdo->select("SELECT id_cli, nome_cli, data_nasc_cli, cpf_cli, CONCAT( logradouro, ',',numero,', ', bairro,' ', cidade,'-', estado ) as endereco_cli, status_cli FROM clientes");
 
 		if(empty($result) || count($result) == 0) {
 			echo "<tr>";

@@ -10,7 +10,7 @@
     $pdo = new Conexao();
 
     //mandar a query para nosso método dentro de conexao dando um return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $result = $pdo->select("SELECT nome_cli, cpf_cli, endereco_cli, status_cli 
+    $result = $pdo->select("SELECT id_cli as id,nome_cli as nome , cpf_cli as cpf,telefone_cli as telefone, CONCAT( logradouro, ',',numero,', ', bairro,' ', cidade,'-', estado ) as endereco ,email_cli as email, status_cli as status
         FROM clientes");
 
  function array_para_csv(array &$array)
@@ -20,9 +20,9 @@
    }
    ob_start();
    $df = fopen("php://output", 'w');
-   fputcsv($df, array_keys(reset($array)));
+   fputcsv($df, array_keys(reset($array)),';');
    foreach ($array as $row) {
-      fputcsv($df, $row);
+      fputcsv($df, $row,';');
    }
    fclose($df);
    return ob_get_clean();

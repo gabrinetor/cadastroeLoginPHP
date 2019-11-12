@@ -16,7 +16,15 @@
     $data_nasc_cli = $_POST['data_nasc_cli'];
     $telefone_cli = $_POST['telefone_cli'];
     $celular_cli = $_POST['celular_cli'];
-    $endereco_cli = $_POST['endereco_cli'];
+    //$endereco_cli = $_POST['endereco_cli'];
+    $status_cli = 1;
+    $cep = $_POST['cep'];
+    $logradouro = $_POST['logradouro'];
+    $nro = $_POST['nro'];
+    $complemento = $_POST['complemento'];
+    $bairro = $_POST['bairro'];
+    $uf = $_POST['uf'];
+    $cidade = $_POST['cidade'];
 
 
 
@@ -25,19 +33,13 @@
     $objDB = new db();
     $link = $objDB->conecta_mysql();    //conexão
 
-    if($endereco_cli == '' || $endereco_cli  == NULL ) {
-        $endereco_cli = "Não informado";
-        $status_cli = 0;
-    } else{
-        $status_cli = 1;
-    }
-    $endereco_cli = utf8_decode($endereco_cli);     
-
     // inserir registros diretamente para a tabela 
     if($_POST['action'] == 'Cadastrar') {
-    $sql = " INSERT INTO clientes(nome_cli, cpf_cli,data_nasc_cli, telefone_cli, celular_cli, endereco_cli, email_cli, status_cli) VALUES ('$nome_cli', '$cpf_cli','$data_nasc_cli', '$telefone_cli', '$celular_cli', '$endereco_cli', '$email_cli', '$status_cli'); ";
+    $sql = " INSERT INTO clientes(nome_cli, cpf_cli,data_nasc_cli, telefone_cli, celular_cli, email_cli, status_cli,cep,logradouro,numero,complemento,bairro,estado,cidade) VALUES ('$nome_cli', '$cpf_cli','$data_nasc_cli', '$telefone_cli', '$celular_cli', '$email_cli', '$status_cli','$cep','$logradouro','$nro','$complemento','$bairro','$uf','$cidade'); ";
 } else  if($_POST['action'] == 'Editar') {
-    $sql = " UPDATE clientes SET nome_cli = '$nome_cli' , cpf_cli = '$cpf_cli' ,data_nasc_cli =  '$data_nasc_cli' , telefone_cli = '$telefone_cli', celular_cli = '$celular_cli', endereco_cli = '$endereco_cli', email_cli = '$email_cli', status_cli = '$status_cli' WHERE id_cli = '$id_cli'";
+    $sql = " UPDATE clientes SET nome_cli = '$nome_cli' , cpf_cli = '$cpf_cli' ,data_nasc_cli =  '$data_nasc_cli' , telefone_cli = '$telefone_cli', celular_cli = '$celular_cli', email_cli = '$email_cli', status_cli = '$status_cli' , cep = '$cep',
+        logradouro = '$logradouro',numero = '$nro',complemento = '$complemento',bairro = '$bairro',estado = '$uf', cidade = '$cidade'
+     WHERE id_cli = '$id_cli'";
 }  
 
     //valida se usuario foi registrado no bd 

@@ -29,15 +29,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `clientes` (
-  `id_cli` int(255) NOT NULL,
+  `id_cli` int(11) NOT NULL,
   `nome_cli` varchar(100) NOT NULL,
-  `cpf_cli` varchar(14) NOT NULL,
-  `data_nasc_cli` date NOT NULL,
-  `telefone_cli` varchar(20) NOT NULL,
-  `celular_cli` varchar(20) NOT NULL,
-  `endereco_cli` varchar(120) NOT NULL,
+  `cpf_cli` varchar(20) NOT NULL,
+  `data_nasc_cli` date,
+  `telefone_cli` varchar(20),
+  `celular_cli` varchar(20),
   `email_cli` varchar(32) NOT NULL,
-  `status_cli` int(255) NOT NULL,
+  `status_cli` int(11) NOT NULL,
+
+  `cep` varchar(255) NOT NULL,
+  `logradouro` varchar(255) NOT NULL,
+  `numero` varchar(255) NOT NULL,
+  `complemento` varchar(255) ,
+  `bairro` varchar(255) NOT NULL,
+  `estado` varchar(3) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
   `data_de_registro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
